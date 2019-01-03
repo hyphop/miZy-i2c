@@ -2,9 +2,8 @@
 
 ## hyphop ##
 
-#flags="-O3 -ffast-math -funroll-loops -Wall -fPIC -DPIC"
+cd $(dirname $0)
 
-#flags="-O3 -ffast-math -funroll-loops -Wall -fPIC -DPIC -mfloat-abi=hard -mfpu=neon -march=armv7-a -mtune=cortex-a9"
 flags="-O3 -ffast-math -funroll-loops -Wall -fPIC -DPIC -mfloat-abi=hard -mfpu=neon -march=armv7-a -mtune=cortex-a9"
 
 export ARCH=arm
@@ -21,6 +20,11 @@ CFLAGS=$flags
 #rm *.o
 
 #$GCC $CFLAGS -o i2c.o -c i2c.c
-$GCC $CFLAGS -o bin/i2c i2c.c
-
-${CROSS_COMPILE}strip bin/i2c
+out=bin/i2c
+echo "[i] build $out">&2
+$GCC $CFLAGS -o $out i2c.c  && {
+    echo "[i] ok">&2
+    ${CROSS_COMPILE}strip $out
+    ls -l1 $out
+    file $out
+}

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+## hyphop ##
+
+cd $(dirname $0)
+
+rm bin/*
