@@ -1,0 +1,17 @@
+#!/bin/sh
+
+## hyphop ##
+
+
+[ -d /tmp/zero_builder ] || mkdir -p /tmp/zero_builder
+
+TC_SRC=https://github.com/hyphop/pkg/releases/download/mirror
+
+TC_SQUASH=toolchain-arm_cortex-a8.vfpv3_gcc-5.3.0_musl-1.1.16_eabi.squashfs
+
+
+[ -f ../$TC_SQUASH ] || {
+
+    wget $TC_SRC/$TC_SQUASH -O../$TC_SQUASH
+
+}
